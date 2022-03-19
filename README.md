@@ -8,6 +8,9 @@
 - 克隆仓库：`clone https://github.com/liamhao/pull-k8s.git`
 - 进入此项目，授权 `pull.sh` 文件 `777` 执行权限：`chmod 777 pull.sh`
 - 执行拉取：`./pull.sh`
+- 验证：`docker images`
+![image](https://user-images.githubusercontent.com/31812811/159112881-30c06314-f64f-4298-8766-f1d0bf60b1aa.png)
+
 
 ### 包含镜像
 | 名称 | 版本 |
