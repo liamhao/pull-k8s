@@ -11,13 +11,13 @@ for i in `kubeadm config images list`; do
   imageVersion=${imageNameWithVersion#*:}
 
   if [ $imageName = "coredns/coredns" ]; then
-	  docker pull $myReg/coredns:$imageVersion
+    docker pull $myReg/coredns:$imageVersion
     docker tag $myReg/coredns:$imageVersion $k8sReg/$imageNameWithVersion
-	  docker rmi $myReg/coredns:$imageVersion
+    docker rmi $myReg/coredns:$imageVersion
   else
-  	docker pull $myReg/$imageNameWithVersion
+    docker pull $myReg/$imageNameWithVersion
     docker tag $myReg/$imageNameWithVersion $k8sReg/$imageNameWithVersion
-  	docker rmi $myReg/$imageNameWithVersion
+    docker rmi $myReg/$imageNameWithVersion
   fi
 
 done;
