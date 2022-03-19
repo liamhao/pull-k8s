@@ -17,12 +17,14 @@
 ![image](https://user-images.githubusercontent.com/31812811/159112881-30c06314-f64f-4298-8766-f1d0bf60b1aa.png)
 
 
+# 一键卸载
+- 授权 `uninstall.sh` 文件 `777` 执行权限：`chmod 777 uninstall.sh`
+- 执行卸载：`./uninstall.sh`(卸载时会删除已下载的镜像)
+
+
 ### 海外镜像问题
-
 还在因为部署 `Kubernetes` 时，无法拉取 `k8s.gcr.io/***` 镜像而头疼吗？
-
 记得在初始化 K8S 时，加上 `--image-repository` 参数，并指定阿里云的镜像仓库，就 OK 了。
-
 ```shell
 kubeadm init --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
 ```
