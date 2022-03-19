@@ -1,4 +1,4 @@
-# 拉取 Kubernetes 镜像脚本
+# 拉取外网 Kubernetes 镜像
 
 还在因为部署 `Kubernetes` 时，无法拉取 `k8s.gcr.io/***` 镜像而头疼吗？
 
