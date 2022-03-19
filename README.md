@@ -4,6 +4,7 @@
 
 ### 使用
 
+- 首先，你的机器上必须要安装了 `kubeadm` 程序（检查：`kubeadm version`）
 - 克隆仓库：`clone https://github.com/liamhao/pull-k8s.git`
 - 进入此项目，授权 `pull.sh` 文件 `777` 执行权限：`chmod 777 pull.sh`
 - 执行拉取：`./pull.sh`
