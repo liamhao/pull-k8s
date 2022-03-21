@@ -23,10 +23,13 @@ kubeadm reset -f
 if [ "$1" ]; then
   # 加入其他集群中，并作为工作节点，将 `kubeadm join xxxx` 的命令作为第一个参数传进来
   $1
+  # 记得需要将主节点的 $HOME/.kube/config 复制到工作节点的 $HOME/.kube/config 下
+  # scp -P 1111 $HOME/.kube/config root@192.168.0.107:$HOME/.kube/config
 else
   # 初始化新集群，并作为主节点
   kubeadm init --pod-network-cidr=10.244.0.0/16 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
   kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  cp /etc/kubernetes/admin.conf $HOME/.kube/config
 fi
 
 exit 0
