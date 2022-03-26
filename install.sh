@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# 将本机 IP 和主机名的映射关系追加到本地的域名解析文件中
+# echo '\nhaosijia\t192.168.0.123' >> /etc/hosts
+
+# 关闭 Selinux，使 SELINUX=disabled
+# vim /etc/selinux/config
+
+# 关闭防火墙
+systemctl stop firewalld && systemctl disable firewalld
+
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 yum install -y docker-ce 
 systemctl enable docker
