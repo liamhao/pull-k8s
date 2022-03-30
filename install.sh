@@ -27,6 +27,8 @@ EOF
 yum install -y kubectl kubelet kubeadm
 
 # 清理残留数据
+rm -f /etc/cni/net.d/*flannel*
+rm -rf /run/flannel
 kubeadm reset -f
 
 if [ "$1" ]; then
@@ -41,8 +43,6 @@ else
 fi
 
 # 网络管理插件
-rm -f /etc/cni/net.d/*flannel*
-rm -rf /run/flannel
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 exit 0
