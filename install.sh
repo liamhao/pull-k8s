@@ -40,9 +40,8 @@ else
   # 初始化新集群，并作为主节点
   kubeadm init --pod-network-cidr=10.244.0.0/16 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
   cp /etc/kubernetes/admin.conf $HOME/.kube/config
+  # 网络管理插件
+  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 fi
-
-# 网络管理插件
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 exit 0
