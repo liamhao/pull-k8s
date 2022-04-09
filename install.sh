@@ -42,6 +42,9 @@ else
   cp /etc/kubernetes/admin.conf $HOME/.kube/config
   # 网络管理插件
   kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  # 解决 failed to set bridge addr: "cni0" already has an IP address different from 10.244.1.1/24 的问题
+  # ifconfig cni0 down
+  # ip link delete cni0
 fi
 
 exit 0
