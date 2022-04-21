@@ -10,7 +10,17 @@
 systemctl stop firewalld && systemctl disable firewalld
 
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-yum install -y docker-ce 
+yum install -y docker-ce
+
+# 修改docker的监控方式
+cat <<EOF > /etc/docker/daemon.json
+{
+  "registry-mirrors": ["https://m5r600f9.mirror.aliyuncs.com"],
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}
+EOF
+
+systemctl daemon-reload
 systemctl enable docker
 systemctl start docker # 这里会卡一会，等待 docker 启动
 
