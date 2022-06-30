@@ -30,9 +30,9 @@
 kubeadm init --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
 ```
 
-如果加上`--image-repository`参数以后，依然报错的话，可能是你的DNS解析有问题，需要在`/etc/hosts`中加入以下解析：
-
-```
-47.95.181.38    registry.cn-beijing.aliyuncs.com
-47.97.242.12    dockerauth.cn-hangzhou.aliyuncs.com
-```
+> 如果加上`--image-repository`参数以后，依然报错的话，可能是你的DNS解析有问题，需要在`/etc/hosts`中加入以下解析：
+> 
+> ```
+> 47.95.181.38    registry.cn-beijing.aliyuncs.com
+> 47.97.242.12    dockerauth.cn-hangzhou.aliyuncs.com
+> ```
