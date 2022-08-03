@@ -56,3 +56,5 @@ $ echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
 $ echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
 ```
 
+### 错误：this version of kubeadm only supports deploying clusters with the control plane version >= 1.23.0. Current version: v1.21.14
+执行 kubeadm join 的时候，从节点的 kubeadm 版本不能高于 主节点，需要把从节点的 kubeadm 进行降版本操作
