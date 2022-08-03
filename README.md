@@ -26,8 +26,8 @@
 还在因为部署 `Kubernetes` 时，无法拉取 `k8s.gcr.io/***` 镜像而头疼吗？
 记得在初始化 K8S 时，加上 `--image-repository` 参数，并指定阿里云的镜像仓库，就 OK 了。
 
-```shell
-kubeadm init --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
+```sh
+$ kubeadm init --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
 ```
 
 > 如果加上`--image-repository`参数以后，依然报错的话，可能是你的DNS解析有问题，需要在`/etc/hosts`中加入以下解析：
@@ -36,3 +36,23 @@ kubeadm init --image-repository=registry.cn-hangzhou.aliyuncs.com/google_contain
 > 47.95.181.38    registry.cn-beijing.aliyuncs.com
 > 47.97.242.12    dockerauth.cn-hangzhou.aliyuncs.com
 > ```
+
+# 其他错误解决
+
+### 错误：failed to parse kubelet flag: unknown flag: --network-plugin
+自 1.24.0 以后，kubernetes 将此参数进行了删除，需要编辑 `/etc/kubernetes/kubelet.conf` 文件，将其中的 `--network-plugin` 参数去掉。还需要将容器管理从 `docker` 改为 `containerd`
+```sh
+$ mv /etc/containerd/config.toml /etc/containerd/config.toml.bak
+$ containerd config default > /etc/containerd/config.toml
+$ echo """
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+""" > /etc/crictl.yaml
+```
+
+### 错误：/proc/sys/net/bridge/bridge-nf-call-iptables contents are not set to 1
+```sh
+$ echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+$ echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
+```
+
