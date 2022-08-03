@@ -34,6 +34,8 @@ repo_gpgcheck=0
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
 EOF
 
+# 查看可用的版本
+# yum search kubeadm --showduplicates
 yum install -y kubectl kubelet kubeadm
 
 # 清理残留数据
