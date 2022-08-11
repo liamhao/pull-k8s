@@ -9,6 +9,7 @@
 # 关闭防火墙
 systemctl stop firewalld && systemctl disable firewalld
 
+yum install yum-config-manager -y
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 yum install -y docker-ce
 
