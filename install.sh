@@ -14,6 +14,7 @@ yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/d
 yum install -y docker-ce
 
 # 修改docker的监控方式
+mkdir /etc/docker
 cat <<EOF > /etc/docker/daemon.json
 {
   "registry-mirrors": ["https://m5r600f9.mirror.aliyuncs.com"],
