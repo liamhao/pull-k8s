@@ -62,6 +62,7 @@ $ modprobe br_netfilter
 $ echo net.bridge.bridge-nf-call-iptables=1 >> /etc/sysctl.conf
 $ sysctl -p
 ```
+参考：[K8S集群中某个worker节点上无法通过域名访问服务 ？](https://www.talkwithtrend.com/Article/253337)
 
 ### 错误：this version of kubeadm only supports deploying clusters with the control plane version >= 1.23.0. Current version: v1.21.14
 执行 kubeadm join 的时候，从节点的 kubeadm 版本不能高于主节点，需要把从节点的 kubeadm 进行降版本操作
