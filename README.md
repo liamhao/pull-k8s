@@ -55,11 +55,13 @@ image-endpoint: unix:///run/containerd/containerd.sock
 $ echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
 $ echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
 ```
-如果提示`没有那个文件或目录: /proc/sys/net/bridge/bridge-nf-call-iptables`，则需要通过
+如果提示`没有那个文件或目录: /proc/sys/net/bridge/bridge-nf-call-iptables`，则需要通过`modprobe br_netfilter`命令来自动加载所需的模块
+`net.bridge.bridge-nf-call-iptables=1`这个配置是`flannel`网络必须的，如果没有这个，则会出现集群内无法解析service名称的问题
 ```sh
-modprobe br_netfilter
+$ modprobe br_netfilter
+$ echo net.bridge.bridge-nf-call-iptables=1 >> /etc/sysctl.conf
+$ sysctl -p
 ```
-命令来自动加载所需的模块
 
 ### 错误：this version of kubeadm only supports deploying clusters with the control plane version >= 1.23.0. Current version: v1.21.14
 执行 kubeadm join 的时候，从节点的 kubeadm 版本不能高于主节点，需要把从节点的 kubeadm 进行降版本操作
